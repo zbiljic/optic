@@ -2,13 +2,13 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"sync"
 
 	"github.com/cheggaaa/pb"
 	"github.com/spf13/cobra"
 
+	"github.com/zbiljic/optic/logger"
 	"github.com/zbiljic/optic/pkg/sysinfo"
 )
 
@@ -53,7 +53,6 @@ var mainExitFn = func() {
 }
 
 func init() {
-	log.SetOutput(ioutil.Discard)
 
 	defineFlagsGlobal(rootCmd.PersistentFlags())
 
@@ -73,6 +72,9 @@ func registerBefore(cmd *cobra.Command) error {
 
 	// Configure global flags.
 	configureGlobals(cmd)
+
+	// Configure logger.
+	logger.SetupLogging(globalDebug, globalQuiet, globalLogfile)
 
 	return nil
 }
