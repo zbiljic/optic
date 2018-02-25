@@ -3,6 +3,10 @@ package cmd
 import (
 	"fmt"
 	"log"
+	"net"
+	"net/http"
+	_ "net/http/pprof" // Comment this line to disable pprof endpoint.
+	"strings"
 	"sync"
 
 	"github.com/cheggaaa/pb"
@@ -98,5 +102,30 @@ func validateCommandCall(cmd *cobra.Command, preconditionFunc func() bool) {
 		}
 		// The command line is wrong. Print help message and stop.
 		fatalIf(errInvalidCommandCall(cmdName), "Invalid command call.")
+	}
+}
+
+func startProfilerServerIfConfigured() {
+	if globalPprofAddr != "" {
+
+		addr, err := net.ResolveTCPAddr("tcp", globalPprofAddr)
+		if err != nil {
+			fatalIf(err, "Could not resolve TCP address:")
+		}
+
+		pprofHostPort := addr.String()
+		parts := strings.Split(pprofHostPort, ":")
+		if len(parts) == 2 && parts[0] == "" {
+			pprofHostPort = fmt.Sprintf("localhost:%s", parts[1])
+		}
+		pprofHostPort = "http://" + pprofHostPort + "/debug/pprof"
+
+		go func() {
+			log.Printf("INFO Starting pprof HTTP server at: %s", pprofHostPort)
+
+			if err := http.ListenAndServe(globalPprofAddr, nil); err != nil {
+				fatalIf(err, "Failed to start pprof server:")
+			}
+		}()
 	}
 }
