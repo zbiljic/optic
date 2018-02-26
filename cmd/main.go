@@ -21,6 +21,9 @@ var rootCmd = &cobra.Command{
 	Use:   "optic",
 	Short: "Data collection, processing and aggregation server.",
 	Long:  `Data collection, processing and aggregation server.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return agentMain()
+	},
 }
 
 // Main starts application

@@ -28,6 +28,8 @@ var (
 
 	globalOsIsWindows    = false // If the application is started on Windows
 	globalServiceCommand = ""
+
+	globalTestCommand = false // If the test command is called
 )
 
 var (
