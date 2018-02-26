@@ -16,9 +16,14 @@ import (
 	"github.com/zbiljic/optic/pkg/sysinfo"
 )
 
+const (
+	// AppName - the name of the application.
+	AppName = "optic"
+)
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "optic",
+	Use:   AppName,
 	Short: "Data collection, processing and aggregation server.",
 	Long:  `Data collection, processing and aggregation server.`,
 	RunE: func(cmd *cobra.Command, args []string) error {

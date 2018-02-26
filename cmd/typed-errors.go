@@ -8,6 +8,6 @@ var (
 	}
 
 	errInvalidCommandCall = func(cmdName string) error {
-		return errors.Errorf("Run 'optic help %[1]s' for usage.", cmdName)
+		return errors.Errorf("Run '%s help %s' for usage.", AppName, cmdName)
 	}
 )
