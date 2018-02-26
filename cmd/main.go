@@ -11,8 +11,8 @@ import (
 
 	"github.com/cheggaaa/pb"
 	"github.com/spf13/cobra"
+	"github.com/zbiljic/pkg/logger"
 
-	"github.com/zbiljic/optic/logger"
 	"github.com/zbiljic/optic/pkg/sysinfo"
 )
 
@@ -81,7 +81,7 @@ func registerBefore(cmd *cobra.Command) error {
 	configureGlobals(cmd)
 
 	// Configure logger.
-	logger.SetupLogging(globalDebug, globalQuiet, globalLogfile)
+	logger.SetupLogging(globalDebug, globalQuiet, globalLogFile)
 
 	return nil
 }

@@ -9,10 +9,10 @@ import (
 	"syscall"
 
 	"github.com/kardianos/service"
+	"github.com/zbiljic/pkg/logger"
 
 	"github.com/zbiljic/optic/agent"
 	"github.com/zbiljic/optic/internal/config"
-	"github.com/zbiljic/optic/logger"
 	_ "github.com/zbiljic/optic/plugins" // load all plugins
 )
 
@@ -127,7 +127,7 @@ func reloadLoop(stop chan struct{}) error {
 
 		// Setup logging again, due to possible logfile update
 		updateGlobals()
-		logger.SetupLogging(globalDebug, globalQuiet, globalLogfile)
+		logger.SetupLogging(globalDebug, globalQuiet, globalLogFile)
 
 		ag, err := agent.NewAgent(c)
 		if err != nil {

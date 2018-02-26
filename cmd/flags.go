@@ -17,8 +17,8 @@ var globalFlags = map[string]func(*pflag.FlagSet){
 	"debug": func(flags *pflag.FlagSet) {
 		flags.Bool("debug", false, "Run the command with debug information in the output.")
 	},
-	"logfile": func(flags *pflag.FlagSet) {
-		flags.String("logfile", "", "File to which to send logs to.")
+	"log-file": func(flags *pflag.FlagSet) {
+		flags.String("log-file", "", "File to which to send logs to.")
 	},
 	"config": func(flags *pflag.FlagSet) {
 		flags.String("config", "", "Configuration file to use instead of the default one.")

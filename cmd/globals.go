@@ -16,7 +16,7 @@ const (
 var (
 	globalQuiet     = false // Quiet flag set via command line
 	globalDebug     = false // Debug flag set via command line
-	globalLogfile   = ""    // Logfile flag set via command line
+	globalLogFile   = ""    // Logfile flag set via command line
 	globalConfig    = ""    // Config flag set via command line
 	globalPprofAddr = ""    // pprof address flag set via command line
 	// WHEN YOU ADD NEXT GLOBAL FLAG, MAKE SURE TO ALSO UPDATE PERSISTENT FLAGS, FLAG CONSTANTS AND UPDATE FUNC.
@@ -78,7 +78,7 @@ func updateGlobals() {
 	globalSection := configSections["global"]
 	globalQuiet = viper.GetBool(globalSection("quiet"))
 	globalDebug = viper.GetBool(globalSection("debug"))
-	globalLogfile = viper.GetString(globalSection("logfile"))
+	globalLogFile = viper.GetString(globalSection("log-file"))
 	globalConfig = viper.GetString(globalSection("config"))
 	globalPprofAddr = viper.GetString(globalSection("pprof-addr"))
 }
