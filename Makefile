@@ -76,7 +76,6 @@ clean: ## Remove build artifacts
 	@echo "==> Cleaning build artifacts..."
 	@rm -fv coverage.txt
 	@find . -name '*.test' | xargs rm -fv
-	@rm -rf "$(PROJECT_ROOT)/optic"
 	@rm -rf "$(PROJECT_ROOT)/release/"
 	@rm -f "$(GOPATH)/bin/optic"
 
